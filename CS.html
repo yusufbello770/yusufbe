@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete Cybersecurity Beginner's Learning Path</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.8;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 25px;
+            color: #2d3436;
+            background-color: #f9f9f9;
+        }
+        h1 {
+            color: #0984e3;
+            text-align: center;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #74b9ff;
+            margin-bottom: 30px;
+        }
+        h2 {
+            color: #00b894;
+            background-color: #dfe6e9;
+            padding: 12px 15px;
+            border-radius: 5px;
+            margin-top: 40px;
+        }
+        h3 {
+            color: #e17055;
+            margin-top: 25px;
+            border-left: 4px solid #e17055;
+            padding-left: 10px;
+        }
+        .stage {
+            background-color: white;
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+        }
+        .lesson {
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px dashed #b2bec3;
+        }
+        .homework {
+            background-color: #e3f2fd;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+        .command {
+            background-color: #2d3436;
+            color: #dfe6e9;
+            padding: 10px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+        }
+        .resources {
+            background-color: #f5f5f5;
+            padding: 15px;
+            border-left: 4px solid #636e72;
+            margin: 15px 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #0984e3;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        a {
+            color: #0984e3;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .pro-tips {
+            background-color: #d1fae5;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 5px solid #10b981;
+            margin-top: 30px;
+        }
+        .checkbox-list {
+            margin: 20px 0;
+        }
+        .checkbox-list li {
+            margin-bottom: 8px;
+            list-style-type: none;
+        }
+        .note {
+            background-color: #fff3bf;
+            padding: 10px 15px;
+            border-left: 4px solid #ffd43b;
+            margin: 15px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Complete Cybersecurity Beginner's Learning Path</h1>
+    <p style="text-align: center; font-size: 1.1em; color: #636e72;">A step-by-step guide from absolute beginner to ethical hacker</p>
+
+    <div class="stage">
+        <h2>📌 Stage 1: Foundations (Weeks 1-2)</h2>
+        <p><strong>Goal:</strong> Build your cybersecurity mindset and set up a safe learning environment.</p>
+
+        <div class="lesson">
+            <h3>Lesson 1: Understanding Cybersecurity</h3>
+            <p><strong>What you'll learn:</strong></p>
+            <ul>
+                <li>The difference between <strong>White Hat</strong> (ethical) and <strong>Black Hat</strong> (malicious) hackers</li>
+                <li>Why cybersecurity matters in today's digital world</li>
+                <li>Basic security principles (CIA Triad: Confidentiality, Integrity, Availability)</li>
+            </ul>
+            
+            <div class="resources">
+                <strong>📚 Learning Resources:</strong>
+                <ul>
+                    <li>Video: <a href="https://www.youtube.com/watch?v=sdpxddDzXfE" target="_blank">"Cybersecurity in 5 Minutes"</a> (5 min)</li>
+                    <li>Article: <a href="https://www.csoonline.com/article/568841/what-is-cybersecurity-definition-best-practices-and-more.html" target="_blank">"What is Cybersecurity?"</a></li>
+                </ul>
+            </div>
+            
+            <div class="homework">
+                <strong>✅ Hands-on Activity:</strong>
+                <ol>
+                    <li>Write down 3 examples of cybersecurity threats you've encountered in daily life</li>
+                    <li>Research one major cyber attack (like the 2017 Equifax breach) and summarize what happened</li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="lesson">
+            <h3>Lesson 2: Setting Up Your Hacking Lab</h3>
+            <p><strong>Why this matters:</strong> You need a safe, legal environment to practice hacking skills.</p>
+            
+            <p><strong>Step-by-Step Guide:</strong></p>
+            <ol>
+                <li><strong>Install VirtualBox:</strong> Free virtualization software to run other operating systems
+                    <div class="note">Note: Download from <a href="https://www.virtualbox.org/" target="_blank">virtualbox.org</a></div>
+                </li>
+                <li><strong>Get Kali Linux:</strong> The most popular security/hacking OS
+                    <div class="note">Download the pre-built VM from <a href="https://www.kali.org/get-kali/" target="_blank">kali.org</a></div>
+                </li>
+                <li><strong>Basic Linux Commands:</strong> Start with these essential commands:
+                    <div class="command">
+                        ls      # List files in current directory<br>
+                        cd      # Change directory (cd /path/to/folder)<br>
+                        pwd     # Show your current directory path<br>
+                        mkdir   # Create new folder (mkdir new_folder)<br>
+                        cat     # View file contents (cat filename.txt)
+                    </div>
+                </li>
+            </ol>
+            
+            <div class="homework">
+                <strong>✅ Daily Practice:</strong>
+                <ul>
+                    <li>Spend 15 minutes daily practicing Linux commands</li>
+                    <li>Create a folder structure with 3 nested folders and 2 text files</li>
+                    <li>Watch: <a href="https://www.youtube.com/watch?v=lZAoFs75_cs" target="_blank">"Linux Basics for Hackers"</a> (15 min)</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="stage">
+        <h2>📌 Stage 2: Network Fundamentals (Weeks 3-4)</h2>
+        <p><strong>Goal:</strong> Understand how networks work and perform basic scanning.</p>
+
+        <div class="lesson">
+            <h3>Lesson 3: How the Internet Works</h3>
+            <p><strong>Key Concepts:</strong></p>
+            <ul>
+                <li><strong>IP Addresses:</strong> Like a home address for computers (192.168.1.1)</li>
+                <li><strong>DNS:</strong> The "phone book" that translates google.com to an IP</li>
+                <li><strong>HTTP/HTTPS:</strong> How websites communicate with your browser</li>
+                <li><strong>Ports:</strong> Different doors to services (Port 80 = web, 22 = SSH)</li>
+            </ul>
+            
+            <div class="resources">
+                <strong>📚 Learning Resources:</strong>
+                <ul>
+                    <li>Interactive: <a href="https://howhttps.works/" target="_blank">"How HTTPS Works"</a> comic</li>
+                    <li>Video: <a href="https://www.youtube.com/watch?v=7_LPdttKXPc" target="_blank">"Networking Basics"</a> (10 min)</li>
+                </ul>
+            </div>
+            
+            <div class="homework">
+                <strong>✅ Hands-on Activities:</strong>
+                <ol>
+                    <li>Find your computer's IP address:
+                        <div class="command">
+                            # On Linux/Mac:<br>
+                            ifconfig<br><br>
+                            # On Windows:<br>
+                            ipconfig
+                        </div>
+                    </li>
+                    <li>Ping different websites:
+                        <div class="command">
+                            ping google.com<br>
+                            ping facebook.com
+                        </div>
+                    </li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="lesson">
+            <h3>Lesson 4: Network Scanning with Nmap</h3>
+            <p><strong>What is Nmap?</strong> The most powerful network scanning tool used by professionals.</p>
+            
+            <p><strong>Basic Nmap Commands:</strong></p>
+            <div class="command">
+                # Scan a single IP<br>
+                nmap 192.168.1.1<br><br>
+                
+                # Scan a website (LEGAL targets only!)<br>
+                nmap scanme.nmap.org<br><br>
+                
+                # More detailed scan<br>
+                nmap -sV -A scanme.nmap.org
+            </div>
+            
+            <div class="note">
+                <strong>⚠️ Important:</strong> Only scan systems you own or have permission to scan. Scanning without permission is illegal.
+            </div>
+            
+            <div class="homework">
+                <strong>✅ Practice Exercises:</strong>
+                <ol>
+                    <li>Scan your home router (find its IP with ifconfig/ipconfig)</li>
+                    <li>Complete <a href="https://tryhackme.com/room/furthernmap" target="_blank">TryHackMe's Nmap Room</a></li>
+                    <li>Discover what services are running on scanme.nmap.org</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+
+    <div class="stage">
+        <h2>📌 Stage 3: Web Application Security (Weeks 5-6)</h2>
+        <p><strong>Goal:</strong> Learn how websites get hacked and practice on safe targets.</p>
+
+        <div class="lesson">
+            <h3>Lesson 5: OWASP Top 10 Vulnerabilities</h3>
+            <p>The Open Web Application Security Project lists the most critical web vulnerabilities:</p>
+            <ol>
+                <li><strong>Injection</strong> (SQLi, command injection)</li>
+                <li><strong>Broken Authentication</strong> (Weak login systems)</li>
+                <li><strong>Sensitive Data Exposure</strong> (Unprotected data)</li>
+                <li><strong>XML External Entities (XXE)</strong></li>
+                <li><strong>Broken Access Control</strong></li>
+                <li><strong>Security Misconfigurations</strong></li>
+                <li><strong>Cross-Site Scripting (XSS)</strong></li>
+                <li><strong>Insecure Deserialization</strong></li>
+                <li><strong>Using Components with Known Vulnerabilities</strong></li>
+                <li><strong>Insufficient Logging & Monitoring</strong></li>
+            </ol>
+            
+            <div class="resources">
+                <strong>📚 Learning Resources:</strong>
+                <ul>
+                    <li>Video: <a href="https://www.youtube.com/watch?v=1S0aBV-Waeo" target="_blank">"OWASP Top 10 Explained"</a></li>
+                    <li>Interactive: <a href="https://portswigger.net/web-security" target="_blank">PortSwigger Web Security Academy</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="lesson">
+            <h3>Lesson 6: Hacking a Practice Website (DVWA)</h3>
+            <p><strong>DVWA (Damn Vulnerable Web App)</strong> is a deliberately vulnerable website for learning.</p>
+            
+            <p><strong>Setup Instructions:</strong></p>
+            <ol>
+                <li>Download DVWA: <a href="https://dvwa.co.uk/" target="_blank">https://dvwa.co.uk/</a></li>
+                <li>Install on your Kali Linux VM (follow setup guide)</li>
+                <li>Login with admin/password</li>
+            </ol>
+            
+            <p><strong>First Hack: SQL Injection</strong></p>
+            <ol>
+                <li>Go to the "SQL Injection" section</li>
+                <li>Try entering: <code class="command">' OR '1'='1</code></li>
+                <li>You should see all user records!</li>
+            </ol>
+            
+            <div class="homework">
+                <strong>✅ Practice Challenges:</strong>
+                <ul>
+                    <li>Complete all DVWA security levels (Low to Impossible)</li>
+                    <li>Try the <a href="https://portswigger.net/web-security/sql-injection" target="_blank">SQL Injection labs</a> at PortSwigger</li>
+                    <li>Document your findings in a text file</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="stage">
+        <h2>📌 Stage 4: Getting Certified (Weeks 7-8+)</h2>
+        <p><strong>Goal:</strong> Earn your first cybersecurity certification.</p>
+
+        <div class="lesson">
+            <h3>Lesson 7: eJPT Certification</h3>
+            <p><strong>Why eJPT?</strong> Perfect first certification because:</p>
+            <ul>
+                <li>100% hands-on (no multiple choice)</li>
+            <li>Affordable ($200 exam)</li>
+            <li>24-hour exam window (take your time)</li>
+            <li>No experience required</li>
+            </ul>
+            
+            <p><strong>Preparation Path:</strong></p>
+            <ol>
+                <li>Take the free <a href="https://my.ine.com/CyberSecurity/learning-paths/61f88d91-79ff-4d8f-9698-1a135002d1da/penetration-testing-student" target="_blank">INE Penetration Testing Student course</a></li>
+                <li>Practice on <a href="https://www.hackthebox.com/" target="_blank">Hack The Box</a> easy machines</li>
+                <li>Review Nmap, web attacks, and basic networking</li>
+            </ol>
+            
+            <div class="homework">
+                <strong>✅ Study Plan:</strong>
+                <ul>
+                    <li>Week 1: Complete INE's Network Security module</li>
+                    <li>Week 2: Master Web Application attacks</li>
+                    <li>Week 3: Practice on 5+ HTB machines</li>
+                    <li>Week 4: Take the exam!</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="stage">
+        <h2>📌 Stage 5: Advanced Path (3+ Months)</h2>
+        <p><strong>Next steps after mastering the basics:</strong></p>
+        
+        <div class="lesson">
+            <h3>Path Options:</h3>
+            <ol>
+                <li><strong>Web Application Security:</strong>
+                    <ul>
+                        <li>Advanced Burp Suite usage</li>
+                        <li>OWASP ZAP</li>
+                        <li>PortSwigger Academy</li>
+                    </ul>
+                </li>
+                <li><strong>Network Penetration Testing:</strong>
+                    <ul>
+                        <li>Active Directory attacks</li>
+                        <li>Privilege escalation</li>
+                        <li>Metasploit Framework</li>
+                    </ul>
+                </li>
+                <li><strong>Red Teaming:</strong>
+                    <ul>
+                        <li>Advanced attack simulations</li>
+                        <li>C2 frameworks (Cobalt Strike)</li>
+                        <li>OSCP certification</li>
+                    </ul>
+                </li>
+            </ol>
+        </div>
+    </div>
+
+    <h2>🎯 Weekly Study Plan Template</h2>
+    <table>
+        <tr>
+            <th>Day</th>
+            <th>Focus Area</th>
+            <th>Activities</th>
+            <th>Time</th>
+        </tr>
+        <tr>
+            <td>Monday</td>
+            <td>Linux Skills</td>
+            <td>Practice commands, file system navigation</td>
+            <td>1 hr</td>
+        </tr>
+        <tr>
+            <td>Tuesday</td>
+            <td>Networking</td>
+            <td>Nmap scanning, Wireshark analysis</td>
+            <td>1 hr</td>
+        </tr>
+        <tr>
+            <td>Wednesday</td>
+            <td>Web Security</td>
+            <td>DVWA challenges, Burp Suite</td>
+            <td>1 hr</td>
+        </tr>
+        <tr>
+            <td>Thursday</td>
+            <td>Learning</td>
+            <td>Watch tutorials, read articles</td>
+            <td>30 min</td>
+        </tr>
+        <tr>
+            <td>Friday</td>
+            <td>Review</td>
+            <td>Practice weak areas, take notes</td>
+            <td>30 min</td>
+        </tr>
+        <tr>
+            <td>Saturday</td>
+            <td>Hands-on</td>
+            <td>HTB/TryHackMe machines</td>
+            <td>2 hrs</td>
+        </tr>
+        <tr>
+            <td>Sunday</td>
+            <td>Rest</td>
+            <td>Optional light review</td>
+            <td>-</td>
+        </tr>
+    </table>
+
+    <div class="pro-tips">
+        <h2>💡 Expert Tips for Success</h2>
+        <ol>
+            <li><strong>Build a learning journal</strong> - Document every new concept and command you learn</li>
+            <li><strong>Join communities</strong> - The Hack The Box and TryHackMe Discord servers are goldmines</li>
+            <li><strong>Break things</strong> - Don't be afraid to mess up in your lab environment</li>
+            <li><strong>Specialize gradually</strong> - Master fundamentals before diving deep into one area</li>
+            <li><strong>Stay ethical</strong> - Never practice on systems without explicit permission</li>
+        </ol>
+    </div>
+
+    <h2>What Do You Want to Learn Next?</h2>
+    <div class="checkbox-list">
+        <ul>
+            <li><input type="checkbox"> Password cracking techniques</li>
+            <li><input type="checkbox"> WiFi security and hacking</li>
+            <li><input type="checkbox"> Malware analysis basics</li>
+            <li><input type="checkbox"> Advanced web application attacks</li>
+            <li><input type="checkbox"> Active Directory penetration testing</li>
+        </ul>
+    </div>
+
+    <p style="text-align: center; margin-top: 40px; font-style: italic;">"The expert in anything was once a beginner." — Helen Hayes</p>
+</body>
+</html>
