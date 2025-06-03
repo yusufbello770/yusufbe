@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Electronic and Computer Engineering Guide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .infographic {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .header {
+            background: linear-gradient(45deg, #1e3c72, #2a5298);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 10px,
+                rgba(255,255,255,0.05) 10px,
+                rgba(255,255,255,0.05) 20px
+            );
+            animation: slide 20s linear infinite;
+        }
+
+        @keyframes slide {
+            0% { transform: translateX(-50px); }
+            100% { transform: translateX(50px); }
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+
+        .content {
+            padding: 0;
+        }
+
+        .section {
+            padding: 40px 30px;
+            border-bottom: 1px solid #eee;
+            transition: background-color 0.3s ease;
+        }
+
+        .section:hover {
+            background-color: #f8f9ff;
+        }
+
+        .section:last-child {
+            border-bottom: none;
+        }
+
+        .section-title {
+            font-size: 1.8em;
+            color: #2a5298;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .grid {
+            display: grid;
+            gap: 20px;
+        }
+
+        .two-col {
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        }
+
+        .three-col {
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        }
+
+        .card {
+            background: white;
+            border: 2px solid #e1e8ff;
+            border-radius: 15px;
+            padding: 25px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: left 0.5s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            border-color: #667eea;
+        }
+
+        .card:hover::before {
+            left: 100%;
+        }
+
+        .card h3 {
+            color: #2a5298;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+
+        .card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .card li {
+            padding: 8px 0;
+            border-bottom: 1px solid #f0f0f0;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .card li:last-child {
+            border-bottom: none;
+        }
+
+        .card li::before {
+            content: '▶';
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-size: 12px;
+        }
+
+        .jamb-section {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+            color: #2d3748;
+        }
+
+        .jamb-requirements {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .jamb-card {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transform: scale(0.95);
+            animation: scaleIn 0.6s ease forwards;
+        }
+
+        @keyframes scaleIn {
+            to { transform: scale(1); }
+        }
+
+        .jamb-card h4 {
+            color: #e53e3e;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .qualities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+        }
+
+        .quality-item {
+            background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%);
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            color: #2d3748;
+            font-weight: bold;
+            transition: transform 0.3s ease;
+        }
+
+        .quality-item:hover {
+            transform: scale(1.05);
+        }
+
+        .jobs-section {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+        }
+
+        .footer {
+            background: #2d3748;
+            color: white;
+            text-align: center;
+            padding: 30px;
+        }
+
+        .footer h3 {
+            margin-bottom: 15px;
+            color: #ffd700;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .section {
+                padding: 30px 20px;
+            }
+            
+            .infographic {
+                margin: 10px;
+                border-radius: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="infographic">
+        <div class="header">
+            <h1>🔌 Electronic & Computer Engineering</h1>
+            <p>Your Complete Guide to ECE Program in Nigeria</p>
+        </div>
+
+        <div class="content">
+            <div class="section">
+                <h2 class="section-title">
+                    <div class="icon">📚</div>
+                    What the Course Entails
+                </h2>
+                <div class="grid two-col">
+                    <div class="card">
+                        <h3>Core Focus Areas</h3>
+                        <ul>
+                            <li>Digital Systems Design</li>
+                            <li>Computer Architecture</li>
+                            <li>Electronic Circuits</li>
+                            <li>Signal Processing</li>
+                            <li>Programming & Software Development</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h3>Advanced Topics</h3>
+                        <ul>
+                            <li>Control Systems & Automation</li>
+                            <li>Communication Systems</li>
+                            <li>Embedded Systems & Robotics</li>
+                            <li>Computer Networks</li>
+                            <li>AI & Machine Learning</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">
+                    <div class="icon">⭐</div>
+                    Essential Qualities for Success
+                </h2>
+                <div class="qualities-grid">
+                    <div class="quality-item">🧮 Strong Mathematical Skills</div>
+                    <div class="quality-item">🔍 Analytical Thinking</div>
+                    <div class="quality-item">💡 Curiosity about Technology</div>
+                    <div class="quality-item">🎯 Attention to Detail</div>
+                    <div class="quality-item">🧩 Problem-Solving Mindset</div>
+                    <div class="quality-item">🔄 Adaptability</div>
+                    <div class="quality-item">💬 Communication Skills</div>
+                    <div class="quality-item">🎨 Creativity & Innovation</div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">
+                    <div class="icon">📖</div>
+                    Core Subjects
+                </h2>
+                <div class="grid three-col">
+                    <div class="card">
+                        <h3>Foundation</h3>
+                        <ul>
+                            <li>Engineering Mathematics</li>
+                            <li>Physics & Applied Physics</li>
+                            <li>Chemistry</li>
+                            <li>Technical Drawing</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h3>Electronics</h3>
+                        <ul>
+                            <li>Circuit Analysis</li>
+                            <li>Digital Electronics</li>
+                            <li>Electronic Devices</li>
+                            <li>Power Electronics</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h3>Computer Systems</h3>
+                        <ul>
+                            <li>Computer Architecture</li>
+                            <li>Data Structures</li>
+                            <li>Programming Languages</li>
+                            <li>Computer Networks</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section jamb-section">
+                <h2 class="section-title">
+                    <div class="icon">🎓</div>
+                    JAMB Requirements
+                </h2>
+                <div class="jamb-requirements">
+                    <div class="jamb-card">
+                        <h4>📝 UTME Subjects</h4>
+                        <p><strong>English Language</strong><br>
+                        <strong>Mathematics</strong><br>
+                        <strong>Physics</strong><br>
+                        <strong>Chemistry</strong></p>
+                    </div>
+                    <div class="jamb-card">
+                        <h4>📊 Minimum Score</h4>
+                        <p><strong>180+</strong><br>
+                        (University dependent)</p>
+                    </div>
+                    <div class="jamb-card">
+                        <h4>📜 O'Level</h4>
+                        <p><strong>5 Credits</strong><br>
+                        Including Math, Physics,<br>
+                        Chemistry & English</p>
+                    </div>
+                    <div class="jamb-card">
+                        <h4>🎯 Direct Entry</h4>
+                        <p><strong>3 A'Level passes</strong><br>
+                        Math, Physics,<br>
+                        Chemistry</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section jobs-section">
+                <h2 class="section-title">
+                    <div class="icon">💼</div>
+                    Career Opportunities
+                </h2>
+                <div class="grid two-col">
+                    <div class="card">
+                        <h3>🖥️ Technology Sector</h3>
+                        <ul>
+                            <li>Software Engineer/Developer</li>
+                            <li>Hardware Design Engineer</li>
+                            <li>Systems Analyst</li>
+                            <li>Cybersecurity Specialist</li>
+                            <li>Embedded Systems Engineer</li>
+                            <li>Robotics Engineer</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h3>📡 Telecommunications</h3>
+                        <ul>
+                            <li>Telecommunications Engineer</li>
+                            <li>RF Engineer</li>
+                            <li>Network Planning Engineer</li>
+                            <li>Signal Processing Engineer</li>
+                            <li>Network Administrator</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h3>🏭 Industry & Manufacturing</h3>
+                        <ul>
+                            <li>Automation Engineer</li>
+                            <li>Quality Control Engineer</li>
+                            <li>Product Development</li>
+                            <li>Technical Sales Engineer</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h3>🚀 Other Opportunities</h3>
+                        <ul>
+                            <li>Research & Development</li>
+                            <li>Academia & Teaching</li>
+                            <li>Consulting</li>
+                            <li>Tech Entrepreneurship</li>
+                            <li>Government Agencies</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">
+                <div class="icon">🏛️</div>
+                Universities Offering Electronic & Computer Engineering
+            </h2>
+            <div class="grid three-col">
+                <div class="card">
+                    <h3>🇳🇬 Federal Universities</h3>
+                    <ul>
+                        <li>Ahmadu Bello University (ABU), Zaria</li>
+                        <li>University of Nigeria, Nsukka (UNN)</li>
+                        <li>University of Lagos (UNILAG)</li>
+                        <li>University of Port Harcourt (UNIPORT)</li>
+                        <li>Federal University of Technology, Akure (FUTA)</li>
+                        <li>Federal University of Technology, Minna (FUTMINNA)</li>
+                        <li>Federal University of Technology, Owerri (FUTO)</li>
+                        <li>Obafemi Awolowo University (OAU), Ile-Ife</li>
+                        <li>University of Benin (UNIBEN)</li>
+                        <li>University of Jos (UNIJOS)</li>
+                        <li>University of Ilorin (UNILORIN)</li>
+                        <li>Nnamdi Azikiwe University (UNIZIK), Awka</li>
+                        <li>Federal University, Oye-Ekiti (FUOYE)</li>
+                        <li>Federal University of Petroleum Resources, Effurun</li>
+                        <li>Michael Okpara University of Agriculture, Umudike</li>
+                        <li>University of Abuja (UNIABUJA)</li>
+                        <li>University of Ibadan (UI)</li>
+                        <li>Bayero University, Kano (BUK)</li>
+                        <li>University of Calabar (UNICAL)</li>
+                        <li>University of Maiduguri (UNIMAID)</li>
+                        <li>University of Uyo (UNIUYO)</li>
+                        <li>Modibbo Adama University of Technology, Yola</li>
+                        <li>Federal University, Dutse (FUD)</li>
+                        <li>Federal University, Lokoja (FULOKOJA)</li>
+                        <li>Federal University of Agriculture, Abeokuta (FUNAAB)</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>🏛️ State Universities</h3>
+                    <ul>
+                        <li>Lagos State University (LASU)</li>
+                        <li>Rivers State University (RSU)</li>
+                        <li>Ekiti State University (EKSU)</li>
+                        <li>Osun State University (UNIOSUN)</li>
+                        <li>Kogi State University</li>
+                        <li>Enugu State University of Science & Technology (ESUT)</li>
+                        <li>Abia State University (ABSU)</li>
+                        <li>Imo State University (IMSU)</li>
+                        <li>Cross River University of Technology (CRUTECH)</li>
+                        <li>Ladoke Akintola University of Technology (LAUTECH)</li>
+                        <li>Delta State University (DELSU)</li>
+                        <li>Ambrose Alli University (AAU)</li>
+                        <li>Nasarawa State University</li>
+                        <li>Plateau State University</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>🏢 Private Universities</h3>
+                    <ul>
+                        <li>Covenant University, Ota</li>
+                        <li>Afe Babalola University (ABUAD)</li>
+                        <li>American University of Nigeria (AUN)</li>
+                        <li>Babcock University</li>
+                        <li>Bells University of Technology</li>
+                        <li>Bowen University</li>
+                        <li>Caleb University</li>
+                        <li>Crescent University</li>
+                        <li>Eastern Palm University</li>
+                        <li>Godfrey Okoye University</li>
+                        <li>Igbinedion University</li>
+                        <li>Landmark University</li>
+                        <li>Lead City University</li>
+                        <li>Madonna University</li>
+                        <li>Nile University of Nigeria</li>
+                        <li>Pan-Atlantic University</li>
+                        <li>Renaissance University</li>
+                        <li>Ritman University</li>
+                        <li>Salem University</li>
+                        <li>Veritas University</li>
+                    </ul>
+                </div>
+            </div>
+            <div style="margin-top: 30px; padding: 25px; background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%); border-radius: 15px; text-align: center;">
+                <h3 style="color: #2d3748; margin-bottom: 15px;">📝 Important Note</h3>
+                <p style="color: #2d3748; font-size: 1.1em; line-height: 1.6;">
+                    <strong>Always verify current admission requirements and course availability with your chosen university before applying.</strong><br>
+                    Some universities may offer the course under different names such as "Computer Engineering," "Electronic Engineering," or "Electrical/Electronic Engineering."
+                </p>
+            </div>
+        </div>
+
+        <div class="footer">
+            <h3>💡 Ready to Shape the Future of Technology?</h3>
+            <p><strong>Choose from 50+ Universities Offering Electronic & Computer Engineering in Nigeria!</strong></p>
+        </div>
+    </div>
+</body>
+</html>
