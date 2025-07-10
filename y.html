@@ -1,1 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phishing Detection Quiz</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.263.1/umd/lucide.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            padding: 30px;
+        }
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        
+        .title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 28px;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .score {
+            font-size: 14px;
+            color: #666;
+            background: #f8f9fa;
+            padding: 8px 16px;
+            border-radius: 20px;
+        }
+        
+        .progress-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        
+        .question-counter {
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .progress-bar {
+            width: 300px;
+            height: 8px;
+            background: #e0e0e0;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: #3b82f6;
+            transition: width 0.3s ease;
+        }
+        
+        .question-card {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            border: 2px solid #e9ecef;
+        }
+        
+        .message-type {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+            font-weight: 600;
+            color: #495057;
+        }
+        
+        .message-details {
+            margin-bottom: 20px;
+        }
+        
+        .detail-row {
+            margin-bottom: 12px;
+        }
+        
+        .detail-label {
+            font-weight: 600;
+            color: #495057;
+        }
+        
+        .detail-value {
+            color: #6c757d;
+        }
+        
+        .message-content {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #3b82f6;
+            margin-top: 15px;
+            line-height: 1.6;
+        }
+        
+        .link-display {
+            background: #e7f3ff;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #3b82f6;
+            margin-top: 15px;
+            word-break: break-all;
+        }
+        
+        .link-label {
+            font-weight: 600;
+            color: #1e40af;
+        }
+        
+        .link-value {
+            color: #2563eb;
+        }
+        
+        .button-container {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .answer-button {
+            flex: 1;
+            padding: 20px;
+            border: none;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .phishing-button {
+            background: #dc2626;
+            color: white;
+        }
+        
+        .phishing-button:hover {
+            background: #b91c1c;
+            transform: translateY(-2px);
+        }
+        
+        .safe-button {
+            background: #16a34a;
+            color: white;
+        }
+        
+        .safe-button:hover {
+            background: #15803d;
+            transform: translateY(-2px);
+        }
+        
+        .result-card {
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            border: 2px solid;
+        }
+        
+        .correct {
+            background: #dcfce7;
+            border-color: #16a34a;
+        }
+        
+        .incorrect {
+            background: #fee2e2;
+            border-color: #dc2626;
+        }
+        
+        .result-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+            font-size: 18px;
+            font-weight: 600;
+        }
+        
+        .explanation {
+            background: #eff6ff;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #3b82f6;
+            margin-bottom: 20px;
+        }
+        
+        .explanation h4 {
+            color: #1e40af;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        
+        .explanation p {
+            color: #1e40af;
+            line-height: 1.6;
+        }
+        
+        .next-button {
+            width: 100%;
+            padding: 15px;
+            background: #3b82f6;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        
+        .next-button:hover {
+            background: #2563eb;
+        }
+        
+        .final-results {
+            text-align: center;
+            padding: 40px 20px;
+        }
+        
+        .final-score {
+            font-size: 48px;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+        
+        .score-excellent { color: #16a34a; }
+        .score-good { color: #ca8a04; }
+        .score-poor { color: #dc2626; }
+        
+        .restart-button {
+            background: #3b82f6;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 20px auto 0;
+            transition: background 0.3s ease;
+        }
+        
+        .restart-button:hover {
+            background: #2563eb;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        .icon {
+            width: 24px;
+            height: 24px;
+        }
+        
+        .large-icon {
+            width: 64px;
+            height: 64px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="quiz-container">
+            <div class="header">
+                <h1 class="title">
+                    <i data-lucide="shield" class="icon"></i>
+                    Phishing Detection Quiz
+                </h1>
+                <div class="score">Score: <span id="score">0</span> points</div>
+            </div>
+            
+            <div class="progress-container">
+                <span class="question-counter">Question <span id="current-question">1</span> of <span id="total-questions">15</span></span>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progress-fill"></div>
+                </div>
+            </div>
+            
+            <div class="question-card">
+                <div class="message-type">
+                    <i data-lucide="mail" class="icon" id="message-icon"></i>
+                    <span id="message-type">Email</span>
+                </div>
+                
+                <div class="message-details">
+                    <div class="detail-row">
+                        <span class="detail-label">From: </span>
+                        <span class="detail-value" id="message-from"></span>
+                    </div>
+                    <div class="detail-row" id="subject-row">
+                        <span class="detail-label">Subject: </span>
+                        <span class="detail-value" id="message-subject"></span>
+                    </div>
+                </div>
+                
+                <div class="message-content" id="message-content"></div>
+                
+                <div class="link-display" id="link-display">
+                    <span class="link-label">Link: </span>
+                    <span class="link-value" id="message-link"></span>
+                </div>
+            </div>
+            
+            <div class="button-container" id="answer-buttons">
+                <button class="answer-button phishing-button" onclick="handleAnswer('phishing')">
+                    <i data-lucide="alert-triangle" class="icon"></i>
+                    PHISHING
+                </button>
+                <button class="answer-button safe-button" onclick="handleAnswer('safe')">
+                    <i data-lucide="check-circle" class="icon"></i>
+                    SAFE
+                </button>
+            </div>
+            
+            <div class="result-card hidden" id="result-card">
+                <div class="result-header">
+                    <i data-lucide="check-circle" class="icon" id="result-icon"></i>
+                    <span id="result-text">Correct!</span>
+                </div>
+                <p id="result-explanation"></p>
+            </div>
+            
+            <div class="explanation hidden" id="explanation">
+                <h4>Explanation:</h4>
+                <p id="explanation-text"></p>
+            </div>
+            
+            <button class="next-button hidden" id="next-button" onclick="nextQuestion()">
+                Next Question
+            </button>
+        </div>
+        
+        <div class="final-results hidden" id="final-results">
+            <i data-lucide="shield" class="large-icon" style="color: #3b82f6; margin-bottom: 20px;"></i>
+            <h2 style="font-size: 32px; margin-bottom: 20px;">Quiz Complete!</h2>
+            <div class="final-score" id="final-score">0/15</div>
+            <p style="font-size: 18px; margin-bottom: 20px;" id="percentage"></p>
+            <p style="font-size: 16px; color: #666; margin-bottom: 30px;" id="score-message"></p>
+            <button class="restart-button" onclick="resetQuiz()">
+                <i data-lucide="rotate-ccw" class="icon"></i>
+                Take Quiz Again
+            </button>
+        </div>
+    </div>
 
+    <script>
+        const questions = [
+            {
+                type: "email",
+                from: "security@paypal.com",
+                subject: "Urgent: Your Account Will Be Suspended",
+                content: "Your PayPal account has been temporarily limited. Click here immediately to verify your account or it will be permanently suspended within 24 hours.",
+                link: "http://paypal-security-update.net/verify",
+                isPhishing: true,
+                explanation: "This is phishing because the link domain 'paypal-security-update.net' is not PayPal's official domain. Real PayPal emails use paypal.com domains and don't use urgent threats."
+            },
+            {
+                type: "email",
+                from: "notifications@amazon.com",
+                subject: "Your Order Confirmation #AMZ-2024-7891",
+                content: "Thank you for your purchase! Your order for MacBook Pro 16-inch has been confirmed. You'll receive tracking information once your item ships.",
+                link: "https://www.amazon.com/your-account/order-history",
+                isPhishing: false,
+                explanation: "This appears legitimate - it uses Amazon's official domain, has proper formatting, and doesn't ask for sensitive information or create urgency."
+            },
+            {
+                type: "email",
+                from: "service@microsoft.com",
+                subject: "Microsoft Account Security Alert",
+                content: "We detected unusual activity on your Microsoft account. Please verify your identity immediately by clicking below.",
+                link: "https://microsoft-security-center.org/verify-account",
+                isPhishing: true,
+                explanation: "This is phishing because 'microsoft-security-center.org' is not Microsoft's official domain. Microsoft uses microsoft.com for official communications."
+            },
+            {
+                type: "text",
+                from: "BANK ALERT",
+                subject: "Text Message",
+                content: "Your account has been locked due to suspicious activity. Verify immediately: bit.ly/bank-verify-2024 or call 1-800-555-0199",
+                link: "bit.ly/bank-verify-2024",
+                isPhishing: true,
+                explanation: "This is phishing because legitimate banks don't send urgent texts with shortened URLs. Always contact your bank directly using official numbers."
+            },
+            {
+                type: "email",
+                from: "support@netflix.com",
+                subject: "Payment Issue - Update Required",
+                content: "We're having trouble processing your payment. Please update your billing information to continue your subscription.",
+                link: "https://www.netflix.com/account/billing",
+                isPhishing: false,
+                explanation: "This appears legitimate - it uses Netflix's official domain and doesn't create false urgency or ask for passwords directly."
+            },
+            {
+                type: "email",
+                from: "noreply@apple.com",
+                subject: "Your Apple ID has been disabled",
+                content: "Your Apple ID has been disabled due to security concerns. Click here to reactivate your account within 48 hours.",
+                link: "https://appleid-verification.secure-apple.com/unlock",
+                isPhishing: true,
+                explanation: "This is phishing because 'secure-apple.com' is not Apple's official domain. Apple uses apple.com for official communications."
+            },
+            {
+                type: "email",
+                from: "team@slack.com",
+                subject: "You've been invited to join TechCorp workspace",
+                content: "John Smith has invited you to join the TechCorp workspace on Slack. Click below to accept the invitation.",
+                link: "https://techcorp.slack.com/signup",
+                isPhishing: false,
+                explanation: "This appears legitimate - it uses Slack's official domain structure and is a normal invitation process."
+            },
+            {
+                type: "text",
+                from: "DELIVERY",
+                subject: "Text Message",
+                content: "Package delivery failed. Reschedule: fedex-redelivery.com/schedule Enter code: FX2024891",
+                link: "fedex-redelivery.com/schedule",
+                isPhishing: true,
+                explanation: "This is phishing because 'fedex-redelivery.com' is not FedEx's official domain. FedEx uses fedex.com for official communications."
+            },
+            {
+                type: "email",
+                from: "security@wellsfargo.com",
+                subject: "Monthly Statement Ready",
+                content: "Your Wells Fargo statement for June 2024 is now available. Log in to view your statement and account activity.",
+                link: "https://www.wellsfargo.com/online-banking/statements",
+                isPhishing: false,
+                explanation: "This appears legitimate - it uses Wells Fargo's official domain and is a normal statement notification."
+            },
+            {
+                type: "email",
+                from: "admin@gmail.com",
+                subject: "Gmail Storage Full - Upgrade Required",
+                content: "Your Gmail storage is 98% full. Upgrade now to avoid losing emails. Click here for immediate expansion.",
+                link: "https://gmail-storage-upgrade.net/expand",
+                isPhishing: true,
+                explanation: "This is phishing because 'gmail-storage-upgrade.net' is not Google's official domain. Google uses google.com or gmail.com for official communications."
+            },
+            {
+                type: "email",
+                from: "hr@yourcompany.com",
+                subject: "Updated Employee Handbook",
+                content: "Please review the updated employee handbook. The new policies take effect next month.",
+                link: "https://yourcompany.sharepoint.com/handbook",
+                isPhishing: false,
+                explanation: "This appears legitimate - it's from your company's HR department using official company domains and SharePoint."
+            },
+            {
+                type: "email",
+                from: "billing@adobe.com",
+                subject: "Invoice Payment Failed",
+                content: "We couldn't process your payment for Adobe Creative Cloud. Update your payment method immediately to avoid service interruption.",
+                link: "https://adobe-billing-center.org/payment-update",
+                isPhishing: true,
+                explanation: "This is phishing because 'adobe-billing-center.org' is not Adobe's official domain. Adobe uses adobe.com for official communications."
+            },
+            {
+                type: "text",
+                from: "SECURITY",
+                subject: "Text Message",
+                content: "Your 2FA code for login: 847291. This code expires in 5 minutes. Do not share this code with anyone.",
+                link: null,
+                isPhishing: false,
+                explanation: "This appears legitimate - it's a standard 2FA code message with appropriate security warnings and no suspicious links."
+            },
+            {
+                type: "email",
+                from: "support@dropbox.com",
+                subject: "Suspicious Login Detected",
+                content: "We detected a login from an unrecognized device. If this wasn't you, please secure your account immediately.",
+                link: "https://dropbox-security.support.com/secure-account",
+                isPhishing: true,
+                explanation: "This is phishing because 'dropbox-security.support.com' is not Dropbox's official domain. Dropbox uses dropbox.com for official communications."
+            },
+            {
+                type: "email",
+                from: "notifications@github.com",
+                subject: "Pull Request Review Requested",
+                content: "You've been requested to review a pull request in the project-alpha repository. Click below to view the changes.",
+                link: "https://github.com/company/project-alpha/pull/142",
+                isPhishing: false,
+                explanation: "This appears legitimate - it uses GitHub's official domain and is a normal pull request notification."
+            }
+        ];
+
+        let currentQuestion = 0;
+        let score = 0;
+        let answered = false;
+
+        function loadQuestion() {
+            const question = questions[currentQuestion];
+            
+            document.getElementById('current-question').textContent = currentQuestion + 1;
+            document.getElementById('progress-fill').style.width = `${((currentQuestion + 1) / questions.length) * 100}%`;
+            
+            // Update message type and icon
+            const messageIcon = document.getElementById('message-icon');
+            const messageType = document.getElementById
