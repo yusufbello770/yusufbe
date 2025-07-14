@@ -3,284 +3,488 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bello Yusuf Alani - Cybersecurity & Network Engineering Professional</title>
+    <title>Phishing Awareness Quiz</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            color: #333;
-        }
-        .header {
-            text-align: center;
-            margin-bottom: 30px;
-            border-bottom: 2px solid #2c3e50;
-            padding-bottom: 20px;
-        }
-        h1 {
-            color: #2c3e50;
-            margin-bottom: 5px;
-        }
-        .subtitle {
-            color: #7f8c8d;
-            font-weight: normal;
-        }
-        .contact-info {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
             display: flex;
             justify-content: center;
-            flex-wrap: wrap;
-            gap: 15px;
-            margin: 15px 0;
-        }
-        .location-container {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin: 15px 0;
-            background: #f8f9fa;
-            padding: 10px;
-            border-radius: 5px;
-        }
-        .location {
-            display: flex;
             align-items: center;
+            padding: 20px;
         }
-        .icon {
-            margin-right: 8px;
-            color: #3498db;
+
+        .game-container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            max-width: 700px;
+            width: 100%;
+            text-align: center;
+            backdrop-filter: blur(10px);
         }
-        h2 {
+
+        .header {
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
             color: #2c3e50;
-            border-bottom: 1px solid #eee;
-            padding-bottom: 5px;
-            margin-top: 25px;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
         }
-        .job, .education {
+
+        .security-icon {
+            font-size: 3em;
             margin-bottom: 20px;
+            animation: pulse 2s ease-in-out infinite;
         }
-        .job-title, .degree {
-            font-weight: bold;
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .score-board {
             display: flex;
             justify-content: space-between;
-        }
-        .company, .school {
-            font-style: italic;
-        }
-        .date {
-            color: #7f8c8d;
-        }
-        ul {
-            padding-left: 20px;
-        }
-        .skills-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-        }
-        .skill-category {
-            flex: 1;
-            min-width: 200px;
-        }
-        .availability {
-            background: #e8f4fc;
+            margin-bottom: 30px;
             padding: 15px;
-            border-radius: 5px;
+            background: #ecf0f1;
+            border-radius: 10px;
+            border: 2px solid #3498db;
+        }
+
+        .score-item {
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .question-container {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            border-left: 5px solid #e74c3c;
+            text-align: left;
+        }
+
+        .question {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            line-height: 1.4;
+        }
+
+        .email-sample {
+            background: #fff;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            text-align: left;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .email-header {
+            background: #f1f2f6;
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+            margin: -15px -15px 15px -15px;
+            border-radius: 8px 8px 0 0;
+        }
+
+        .options {
+            display: grid;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .option {
+            padding: 15px;
+            background: #fff;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.1em;
+            text-align: center;
+        }
+
+        .option:hover {
+            background: #e3f2fd;
+            border-color: #3498db;
+            transform: translateY(-2px);
+        }
+
+        .option.selected {
+            background: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .option.correct {
+            background: #27ae60;
+            color: white;
+            border-color: #229954;
+        }
+
+        .option.incorrect {
+            background: #e74c3c;
+            color: white;
+            border-color: #c0392b;
+        }
+
+        .feedback {
             margin: 20px 0;
+            padding: 15px;
+            border-radius: 10px;
+            font-weight: bold;
+            display: none;
         }
-        a {
-            color: #3498db;
-            text-decoration: none;
+
+        .feedback.correct {
+            background: #d5f4e6;
+            color: #0f5132;
+            border: 1px solid #badbcc;
         }
-        a:hover {
-            text-decoration: underline;
+
+        .feedback.incorrect {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
         }
-        .highlight {
-            background-color: #e8f4fc;
-            padding: 2px 5px;
-            border-radius: 3px;
+
+        .btn {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 10px;
+        }
+
+        .btn:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+        }
+
+        .btn:disabled {
+            background: #bdc3c7;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .final-score {
+            font-size: 1.5em;
+            color: #2c3e50;
+            margin: 20px 0;
+            padding: 20px;
+            background: #ecf0f1;
+            border-radius: 10px;
+            border: 2px solid #3498db;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 10px;
+            background: #ddd;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+
+        .progress {
+            height: 100%;
+            background: linear-gradient(90deg, #3498db, #9b59b6);
+            transition: width 0.3s ease;
+        }
+
+        .start-screen, .end-screen {
+            display: none;
+        }
+
+        .start-screen.active, .end-screen.active {
+            display: block;
+        }
+
+        .start-description {
+            font-size: 1.1em;
+            color: #555;
+            margin-bottom: 30px;
+            line-height: 1.6;
+            text-align: left;
+        }
+
+        .warning-box {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 15px 0;
+            color: #856404;
+        }
+
+        .red-flag {
+            color: #e74c3c;
             font-weight: bold;
         }
-        .tooltip {
-            position: relative;
-            display: inline-block;
-            border-bottom: 1px dotted black;
-        }
-        .tooltip .tooltiptext {
-            visibility: hidden;
-            width: 200px;
-            background-color: #555;
-            color: #fff;
-            text-align: center;
-            border-radius: 6px;
-            padding: 5px;
-            position: absolute;
-            z-index: 1;
-            bottom: 125%;
-            left: 50%;
-            margin-left: -100px;
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-        .tooltip:hover .tooltiptext {
-            visibility: visible;
-            opacity: 1;
+
+        .green-flag {
+            color: #27ae60;
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
-    <div class="header">
-        <h1>BELLO YUSUF ALANI</h1>
-        <p class="subtitle">Senior Cybersecurity Analyst | Network Engineer</p>
-        
-        <div class="contact-info">
-            <span>📧 <a href="mailto:yusufbello770@gmail.com">yusufbello770@gmail.com</a></span>
-            <span>📞 +234 705 734 6104</span>
-            <span>🌐 <a href="https://www.yusufbe.vercel.app" target="_blank">Portfolio</a></span>
-            <span>💻 <a href="https://github.com/yusufbello770" target="_blank">GitHub</a></span>
+    <div class="game-container">
+        <div class="header">
+            <div class="security-icon">🛡️</div>
+            <h1>Phishing Awareness Quiz</h1>
         </div>
-        
-        <div class="location-container">
-            <div class="location">
-                <span class="icon">📍</span>
-                <div>
-                    <strong>Current Academic Base:</strong><br>
-                    Awka, Anambra State
+
+        <div class="start-screen active">
+            <div class="start-description">
+                <div class="warning-box">
+                    <strong>🚨 Important:</strong> Phishing attacks are one of the most common cybersecurity threats, affecting millions of people worldwide.
                 </div>
+                Test your ability to identify phishing attempts with 20 real-world scenarios. You'll see emails, messages, and websites that could be legitimate or malicious.
+                <br><br>
+                <strong>What you'll learn:</strong>
+                <ul style="text-align: left; margin: 15px 0;">
+                    <li>How to spot suspicious emails and messages</li>
+                    <li>Red flags that indicate phishing attempts</li>
+                    <li>Best practices for online security</li>
+                    <li>How to verify legitimate communications</li>
+                </ul>
+                Ready to test your phishing detection skills?
             </div>
-            <div class="location">
-                <span class="icon">🏠</span>
-                <div>
-                    <strong>Permanent Address:</strong><br>
-                    Ibadan, Oyo State
-                </div>
+            <button class="btn" onclick="startGame()">Start Security Quiz</button>
+        </div>
+
+        <div class="game-screen">
+            <div class="score-board">
+                <div class="score-item">Question: <span id="current-question">1</span>/20</div>
+                <div class="score-item">Score: <span id="score">0</span></div>
+                <div class="score-item">Correct: <span id="correct-count">0</span></div>
             </div>
+
+            <div class="progress-bar">
+                <div class="progress" id="progress"></div>
+            </div>
+
+            <div class="question-container">
+                <div class="question" id="question"></div>
+                <div id="question-content"></div>
+                <div class="options" id="options"></div>
+                <div class="feedback" id="feedback"></div>
+            </div>
+
+            <button class="btn" id="next-btn" onclick="nextQuestion()" disabled>Next Question</button>
         </div>
-        
-        <div class="availability">
-            <strong>🚀 Mobility:</strong> Available for opportunities in both locations | Open to remote work nationwide
+
+        <div class="end-screen">
+            <div class="final-score" id="final-score"></div>
+            <div id="performance-message"></div>
+            <button class="btn" onclick="restartGame()">Test Again</button>
         </div>
     </div>
 
-    <h2>PROFESSIONAL SUMMARY</h2>
-    <p>Certified cybersecurity specialist with <span class="highlight">300+ hours</span> of hands-on penetration testing experience and network infrastructure expertise. Combines <span class="highlight">Bash automation</span> skills with <span class="highlight">SQL database security</span> knowledge to build comprehensive defense systems. EC-Council Certified Ethical Hacker with proven track record in vulnerability assessment and network hardening.</p>
+    <script>
+        const questions = [
+            {
+                question: "Analyze this email. Is it legitimate or a phishing attempt?",
+                content: `<div class="email-sample">
+                    <div class="email-header">
+                        <strong>From:</strong> security@paypal.com<br>
+                        <strong>Subject:</strong> Urgent: Your Account Has Been Suspended
+                    </div>
+                    Dear Customer,<br><br>
+                    Your PayPal account has been suspended due to suspicious activity. Click here immediately to verify your account or it will be permanently closed within 24 hours.
+                    <br><br>
+                    <a href="http://paypal-security.net/verify" style="color: blue;">Verify Account Now</a>
+                    <br><br>
+                    PayPal Security Team
+                </div>`,
+                options: ["Legitimate", "Phishing Attempt", "Uncertain", "Need more information"],
+                correct: 1,
+                explanation: "This is a phishing attempt. Red flags: urgent language, suspicious URL (paypal-security.net instead of paypal.com), and threats of account closure."
+            },
+            {
+                question: "What is the most effective way to verify if an email from your bank is legitimate?",
+                content: "",
+                options: ["Click the links in the email", "Call the bank directly using their official number", "Reply to the email asking for verification", "Check if the sender's email looks official"],
+                correct: 1,
+                explanation: "Always contact your bank directly using their official phone number or visit their website by typing the URL manually."
+            },
+            {
+                question: "Which of these is a common phishing technique?",
+                content: "",
+                options: ["Spear phishing", "Whaling", "Vishing", "All of the above"],
+                correct: 3,
+                explanation: "All are phishing techniques: spear phishing (targeted), whaling (targeting executives), and vishing (voice phishing via phone calls)."
+            },
+            {
+                question: "Examine this URL. Is it safe to click?",
+                content: `<div class="email-sample">
+                    You received an email with this link:<br><br>
+                    <strong>https://www.arnazon.com/security-update</strong>
+                    <br><br>
+                    The email claims to be from Amazon about a security update.
+                </div>`,
+                options: ["Safe to click", "Suspicious - don't click", "Safe if using antivirus", "Only safe on mobile"],
+                correct: 1,
+                explanation: "This is suspicious - 'arnazon.com' is a typosquatting attempt mimicking 'amazon.com'. Never click suspicious URLs."
+            },
+            {
+                question: "What should you do if you accidentally clicked a phishing link?",
+                content: "",
+                options: ["Ignore it and hope for the best", "Immediately change passwords and scan for malware", "Turn off your computer", "Only worry if you entered information"],
+                correct: 1,
+                explanation: "Act quickly: change passwords, run malware scans, monitor accounts, and consider enabling 2FA if not already active."
+            },
+            {
+                question: "Which email greeting is most likely to be from a phishing attempt?",
+                content: "",
+                options: ["Dear John Smith", "Dear Valued Customer", "Hello John", "Hi there"],
+                correct: 1,
+                explanation: "Generic greetings like 'Dear Valued Customer' are red flags. Legitimate companies usually use your actual name."
+            },
+            {
+                question: "Analyze this text message. Is it legitimate?",
+                content: `<div class="email-sample">
+                    <strong>Text Message:</strong><br><br>
+                    "URGENT: Your bank account has been compromised. Reply with your PIN and last 4 digits of SSN to secure your account. -FirstNational Bank"
+                </div>`,
+                options: ["Legitimate bank security", "Phishing attempt", "Legitimate but poorly worded", "Need to verify bank name"],
+                correct: 1,
+                explanation: "This is definitely phishing. Banks never ask for PINs or SSNs via text message. Always contact your bank directly."
+            },
+            {
+                question: "What is 'spear phishing'?",
+                content: "",
+                options: ["Phishing with fishing themes", "Targeted phishing using personal information", "Phishing via social media", "Phishing using malware"],
+                correct: 1,
+                explanation: "Spear phishing is highly targeted, using personal information to make the attack more convincing and harder to detect."
+            },
+            {
+                question: "Which of these is NOT a red flag in emails?",
+                content: "",
+                options: ["Urgent language demanding immediate action", "Generic greetings", "Proper grammar and spelling", "Suspicious attachments"],
+                correct: 2,
+                explanation: "Proper grammar and spelling is actually a good sign, though modern phishing attempts have improved their language quality."
+            },
+            {
+                question: "What is the safest way to access your online banking?",
+                content: "",
+                options: ["Click links in bank emails", "Type the bank's URL directly in browser", "Use Google search results", "Use bookmarks only"],
+                correct: 1,
+                explanation: "Always type the bank's official URL directly into your browser's address bar to avoid malicious redirects."
+            },
+            {
+                question: "Examine this email signature. Does it look legitimate?",
+                content: `<div class="email-sample">
+                    <strong>Email Signature:</strong><br><br>
+                    Best regards,<br>
+                    Microsoft Security Team<br>
+                    Email: security@microsoft-support.net<br>
+                    Phone: 1-800-MICROSOFT<br>
+                    "Protecting your digital life since 1975"
+                </div>`,
+                options: ["Looks legitimate", "Suspicious - likely phishing", "Legitimate but outdated", "Can't determine"],
+                correct: 1,
+                explanation: "Red flags: wrong domain (microsoft-support.net vs microsoft.com), Microsoft was founded in 1975 but didn't focus on security then."
+            },
+            {
+                question: "What is 'whaling' in cybersecurity?",
+                content: "",
+                options: ["Phishing targeting executives", "Large-scale phishing attacks", "Phishing using whale images", "Phishing via WhatsApp"],
+                correct: 0,
+                explanation: "Whaling specifically targets high-profile individuals like CEOs and executives with sophisticated, personalized attacks."
+            },
+            {
+                question: "Which attachment type is most dangerous in phishing emails?",
+                content: "",
+                options: ["PDF files", "Image files (JPG, PNG)", "Executable files (.exe, .scr)", "Text files (.txt)"],
+                correct: 2,
+                explanation: "Executable files are most dangerous as they can run malicious code. Be very cautious with .exe, .scr, .bat, and .zip files."
+            },
+            {
+                question: "How can you verify if a website is secure?",
+                content: "",
+                options: ["Check for HTTPS and padlock icon", "Look for professional design", "Check if it loads quickly", "See if it has a privacy policy"],
+                correct: 0,
+                explanation: "HTTPS (the padlock icon) indicates encrypted communication, though it doesn't guarantee the site is legitimate."
+            },
+            {
+                question: "What should you do if you receive a suspicious email?",
+                content: "",
+                options: ["Delete it immediately", "Report it as phishing/spam", "Forward it to friends as a warning", "Reply asking if it's legitimate"],
+                correct: 1,
+                explanation: "Report suspicious emails to help protect others. Most email providers have built-in reporting features."
+            },
+            {
+                question: "Which of these is a legitimate reason a company might ask for your password?",
+                content: "",
+                options: ["To update your security settings", "To verify your identity", "To fix a technical issue", "None of the above"],
+                correct: 3,
+                explanation: "Legitimate companies never ask for your password. They have other ways to verify identity and fix issues."
+            },
+            {
+                question: "Analyze this social media message. Is it suspicious?",
+                content: `<div class="email-sample">
+                    <strong>Facebook Message:</strong><br><br>
+                    "Hi! I'm stuck in London and lost my wallet. Can you send me $300 via Western Union? I'll pay you back when I get home. Thanks!"<br><br>
+                    - From your friend Sarah
+                </div>`,
+                options: ["Probably legitimate emergency", "Suspicious - likely compromised account", "Need more details", "Should help immediately"],
+                correct: 1,
+                explanation: "This is a classic compromise scam. Contact your friend through another method to verify before sending money."
+            },
+            {
+                question: "What is 'vishing'?",
+                content: "",
+                options: ["Video phishing", "Voice phishing via phone", "Virus phishing", "Virtual reality phishing"],
+                correct: 1,
+                explanation: "Vishing is voice phishing - scammers call you pretending to be from legitimate organizations to steal information."
+            },
+            {
+                question: "Which is the best practice for creating secure passwords?",
+                content: "",
+                options: ["Use same password for all accounts", "Use long, unique passwords with password manager", "Use personal information", "Change passwords monthly"],
+                correct: 1,
+                explanation: "Use a password manager to create and store long, unique passwords for each account. This is the most secure approach."
+            },
+            {
+                question: "What is the main goal of phishing attacks?",
+                content: "",
+                options: ["To crash computer systems", "To steal personal information and credentials", "To send spam emails", "To slow down internet"],
+                correct: 1,
+                explanation: "Phishing primarily aims to steal personal information, login credentials, and financial data for identity theft or fraud."
+            }
+        ];
 
-    <h2>TECHNICAL SKILLS</h2>
-    <div class="skills-container">
-        <div class="skill-category">
-            <strong>Cybersecurity:</strong>
-            <ul>
-                <li><span class="highlight">Penetration Testing</span> (OWASP Top 10, PTES)</li>
-                <li><span class="highlight">SIEM Solutions</span> (Splunk, ELK Stack, Wazuh)</li>
-                <li><span class="highlight">Forensic Tools</span> (Autopsy, FTK, Volatility)</li>
-                <li><span class="highlight">Malware Analysis</span> (Static/Dynamic, YARA rules)</li>
-                <li><span class="highlight">Threat Intelligence</span> (MITRE ATT&CK, TTPs)</li>
-            </ul>
-        </div>
-        
-        <div class="skill-category">
-            <strong>Network Engineering:</strong>
-            <ul>
-                <li><span class="highlight">Cisco Technologies</span> (CCNA-level routing/switching)</li>
-                <li><span class="highlight">Firewall Management</span> (pfSense, Cisco ASA)</li>
-                <li><span class="highlight">VPN Solutions</span> (IPSec, OpenVPN, WireGuard)</li>
-                <li><span class="highlight">Network Monitoring</span> (Zabbix, Nagios, PRTG)</li>
-                <li><span class="highlight">Packet Analysis</span> (Wireshark, Tcpdump)</li>
-            </ul>
-        </div>
-        
-        <div class="skill-category">
-            <strong>Programming/Scripting:</strong>
-            <ul>
-                <li><span class="highlight">Bash/Shell</span> (Security automation, log analysis)</li>
-                <li><span class="highlight">SQL</span> (MySQL hardening, injection prevention)</li>
-                <li>Python (Security tools development)</li>
-                <li>PowerShell (Windows security scripts)</li>
-            </ul>
-        </div>
-    </div>
+        let currentQuestion = 0;
+        let score = 0;
+        let correctAnswers = 0;
+        let selectedAnswer = null;
+        let gameStarted = false;
 
-    <h2>WORK EXPERIENCE</h2>
-    <div class="job">
-        <div class="job-title">
-            <span>Senior Cyber Security Analyst</span>
-            <span class="date">Aug 2022 - Present</span>
-        </div>
-        <div class="company">Dark Security, Awka</div>
-        <ul>
-            <li>Conducted <span class="highlight">penetration tests</span> for 25+ clients across banking and healthcare sectors</li>
-            <li>Developed <span class="highlight">Bash scripts</span> to automate vulnerability scans, reducing manual work by 40%</li>
-            <li>Implemented <span class="highlight">SIEM alerts</span> that detected 15+ advanced persistent threats</li>
-            <li>Performed <span class="highlight">network segmentation</span> that reduced attack surface by 60%</li>
-        </ul>
-    </div>
-    
-    <div class="job">
-        <div class="job-title">
-            <span>Network Security Engineer</span>
-            <span class="date">Jun 2024 - Dec 2024</span>
-        </div>
-        <div class="company">Famsam GP Consult, Ibadan</div>
-        <ul>
-            <li>Designed and deployed <span class="highlight">Cisco-based network infrastructure</span> for 3 SME clients</li>
-            <li>Configured <span class="highlight">pfSense firewalls</span> with IDS/IPS capabilities</li>
-            <li>Created <span class="highlight">SQL database monitoring</span> system for suspicious queries</li>
-            <li>Developed <span class="highlight">network hardening</span> checklist adopted company-wide</li>
-        </ul>
-    </div>
-
-    <h2>CERTIFICATIONS</h2>
-    <ul>
-        <li>Certified Ethical Hacker (CEH) - EC-Council</li>
-        <li>Cisco Certified Network Associate (CCNA) - In Progress</li>
-        <li>CompTIA Security+</li>
-        <li>OSCP (Penetration Testing) - Planned 2024</li>
-        <li>Mastering Ransomware Incident Response - Dr. Jose Prabhu</li>
-    </ul>
-
-    <h2>TECHNICAL PROJECTS</h2>
-    <div class="job">
-        <div class="job-title">
-            <span>Automated Network Security Monitor</span>
-            <span class="date">2023</span>
-        </div>
-        <ul>
-            <li>Built <span class="highlight">Bash/Python</span> tool that analyzes firewall logs and detects anomalies</li>
-            <li>Integrated with <span class="highlight">MySQL database</span> for threat pattern storage</li>
-            <li>Reduced false positives by 35% compared to commercial solutions</li>
-            <li><a href="https://github.com/yusufbello770/network-monitor" target="_blank">View on GitHub</a></li>
-        </ul>
-    </div>
-    
-    <div class="job">
-        <div class="job-title">
-            <span>SQL Injection Prevention Framework</span>
-            <span class="date">2022</span>
-        </div>
-        <ul>
-            <li>Developed web application firewall rules to block <span class="highlight">SQLi attacks</span></li>
-            <li>Created training materials on <span class="highlight">parameterized queries</span></li>
-            <li>Implemented in 5+ client systems with 100% attack prevention</li>
-        </ul>
-    </div>
-
-    <h2>EDUCATION</h2>
-    <div class="education">
-        <div class="degree">
-            <span>B.Eng Electronic & Computer Engineering</span>
-            <span class="date">2020-Present</span>
-        </div>
-        <div class="school">Nnamdi Azikiwe University, Awka</div>
-        <ul>
-            <li>Thesis: "Machine Learning Approach to Network Intrusion Detection"</li>
-            <li>Coursework: Advanced Networking, Cryptography, Secure Coding</li>
-        </ul>
-    </div>
-
-    <div class="availability">
-        <strong>🔒 Security Clearance:</strong> Willing to undergo background checks for sensitive positions<br>
-        <strong>🌍 Remote Work Setup:</strong> Fully equipped home lab with Kali Linux, Cisco Packet Tracer, and VirtualBox environments
-    </div>
-</body>
-</html>
+        function startGame() {
+            document.querySelector('.start-screen').classList.remove('active');
+  
