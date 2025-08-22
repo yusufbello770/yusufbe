@@ -12,17 +12,17 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
-<style>
-    
-
+ <style>
     /* Form container */
     form {
       background: #fff;
-      padding: 25px 30px;
+      padding: 30px;
       border-radius: 12px;
-      box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
       width: 100%;
       max-width: 500px;
+      position: relative;
+      overflow: hidden;
     }
 
     form h2 {
@@ -31,7 +31,7 @@
       color: #333;
     }
 
-    /* Fields group */
+    /* Input fields */
     .fields {
       display: flex;
       gap: 10px;
@@ -44,7 +44,6 @@
       flex-direction: column;
     }
 
-    /* Inputs & textarea */
     input, textarea {
       padding: 12px;
       border: 1px solid #ccc;
@@ -56,7 +55,7 @@
 
     input:focus, textarea:focus {
       border-color: #2575fc;
-      box-shadow: 0 0 5px rgba(37,117,252,0.4);
+      box-shadow: 0 0 6px rgba(37,117,252,0.4);
     }
 
     textarea {
@@ -83,6 +82,26 @@
 
     button:hover {
       background: #1b5ed8;
+    }
+
+    /* Success & error messages */
+    .status {
+      margin-top: 15px;
+      padding: 10px;
+      border-radius: 8px;
+      display: none;
+      text-align: center;
+      font-weight: bold;
+    }
+    .status.success {
+      background: #d4edda;
+      color: #155724;
+      border: 1px solid #c3e6cb;
+    }
+    .status.error {
+      background: #f8d7da;
+      color: #721c24;
+      border: 1px solid #f5c6cb;
     }
   </style>
 </head>
@@ -300,7 +319,7 @@
                 </div>
                 <div class="column right">
                     <div class="text">Message me</div>
-                 <form action="sendmail.php" method="POST">
+                 <form id="contactForm" action="https://formspree.io/f/yourFormID" method="POST">
     <h2>Contact Me</h2>
     <div class="fields">
       <div class="field name">
@@ -319,7 +338,39 @@
     <div class="button-area">
       <button type="submit">Send Message</button>
     </div>
+    <div id="formStatus" class="status"></div>
   </form>
+
+  <script>
+    const form = document.getElementById("contactForm");
+    const status = document.getElementById("formStatus");
+
+    form.addEventListener("submit", async function(e) {
+      e.preventDefault();
+      const data = new FormData(form);
+
+      fetch(form.action, {
+        method: form.method,
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      }).then(response => {
+        if (response.ok) {
+          status.style.display = "block";
+          status.className = "status success";
+          status.textContent = "✅ Message sent successfully!";
+          form.reset();
+        } else {
+          status.style.display = "block";
+          status.className = "status error";
+          status.textContent = "❌ Oops! Something went wrong. Try again.";
+        }
+      }).catch(error => {
+        status.style.display = "block";
+        status.className = "status error";
+        status.textContent = "❌ Failed to send. Check your connection.";
+      });
+    });
+  </script>
 
                 </div>
             </div>
