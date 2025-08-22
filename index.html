@@ -12,7 +12,79 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+<style>
+    
 
+    /* Form container */
+    form {
+      background: #fff;
+      padding: 25px 30px;
+      border-radius: 12px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+      width: 100%;
+      max-width: 500px;
+    }
+
+    form h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    /* Fields group */
+    .fields {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+
+    .field {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Inputs & textarea */
+    input, textarea {
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      outline: none;
+      transition: 0.3s;
+      font-size: 15px;
+    }
+
+    input:focus, textarea:focus {
+      border-color: #2575fc;
+      box-shadow: 0 0 5px rgba(37,117,252,0.4);
+    }
+
+    textarea {
+      resize: none;
+      min-height: 120px;
+    }
+
+    /* Button */
+    .button-area {
+      text-align: center;
+      margin-top: 10px;
+    }
+
+    button {
+      padding: 12px 25px;
+      background: #2575fc;
+      border: none;
+      color: white;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: #1b5ed8;
+    }
+  </style>
 </head>
 
 <body>
@@ -228,13 +300,26 @@
                 </div>
                 <div class="column right">
                     <div class="text">Message me</div>
-                 <form action="https://formspree.io/f/yourformid" method="POST">
-  <input type="text" name="name" placeholder="Name" required>
-  <input type="email" name="email" placeholder="Email" required>
-  <input type="text" name="subject" placeholder="Subject" required>
-  <textarea name="message" placeholder="Message.." required></textarea>
-  <button type="submit">Send message</button>
-</form>
+                 <form action="sendmail.php" method="POST">
+    <h2>Contact Me</h2>
+    <div class="fields">
+      <div class="field name">
+        <input type="text" name="name" placeholder="Your Name" required>
+      </div>
+      <div class="field email">
+        <input type="email" name="email" placeholder="Your Email" required>
+      </div>
+    </div>
+    <div class="field">
+      <input type="text" name="subject" placeholder="Subject" required>
+    </div>
+    <div class="field textarea">
+      <textarea name="message" placeholder="Your Message.." required></textarea>
+    </div>
+    <div class="button-area">
+      <button type="submit">Send Message</button>
+    </div>
+  </form>
 
                 </div>
             </div>
