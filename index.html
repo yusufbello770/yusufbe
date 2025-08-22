@@ -319,14 +319,15 @@
                 </div>
                 <div class="column right">
                     <div class="text">Message me</div>
-                 <form id="contactForm" action="https://formspree.io/f/yourFormID" method="POST">
+                 body>
+  <form onsubmit="sendEmail(event)">
     <h2>Contact Me</h2>
     <div class="fields">
       <div class="field name">
-        <input type="text" name="name" placeholder="Your Name" required>
+        <input type="text" name="user_name" placeholder="Your Name" required>
       </div>
       <div class="field email">
-        <input type="email" name="email" placeholder="Your Email" required>
+        <input type="email" name="user_email" placeholder="Your Email" required>
       </div>
     </div>
     <div class="field">
@@ -340,37 +341,6 @@
     </div>
     <div id="formStatus" class="status"></div>
   </form>
-
-  <script>
-    const form = document.getElementById("contactForm");
-    const status = document.getElementById("formStatus");
-
-    form.addEventListener("submit", async function(e) {
-      e.preventDefault();
-      const data = new FormData(form);
-
-      fetch(form.action, {
-        method: form.method,
-        body: data,
-        headers: { 'Accept': 'application/json' }
-      }).then(response => {
-        if (response.ok) {
-          status.style.display = "block";
-          status.className = "status success";
-          status.textContent = "✅ Message sent successfully!";
-          form.reset();
-        } else {
-          status.style.display = "block";
-          status.className = "status error";
-          status.textContent = "❌ Oops! Something went wrong. Try again.";
-        }
-      }).catch(error => {
-        status.style.display = "block";
-        status.className = "status error";
-        status.textContent = "❌ Failed to send. Check your connection.";
-      });
-    });
-  </script>
 
                 </div>
             </div>
